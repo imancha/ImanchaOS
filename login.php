@@ -1,4 +1,6 @@
 <?php include_once('function.inc');
+	ob_start();
+	
   if(isset($_SESSION['id'])){
     header('Location: dashboard.php');
     exit();
@@ -8,14 +10,17 @@
 <html class="bg-black">
   <head>
     <meta charset="UTF-8">
-    <title>Sign In | Imancha-OS</title>
+    <title>Sign In | ImanchaOS</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+		<meta content='<?php echo $title; ?> | ImanchaOS' name='keywords'/>
+		<meta content='<?php echo $description; ?> | ImanchaOS' name='description'/>    
     <!-- bootstrap 3.0.2 -->
     <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <!-- font Awesome -->
     <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
-    <link href="css/imancha.css" rel="stylesheet" type="text/css" />       
+    <link href="css/imancha.css" rel="stylesheet" type="text/css" />
+    <link href="img/imanchaos.png" rel="shortcut icon" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -79,6 +84,7 @@
               }
             }
             mysql_close();
+            ob_flush();
           }
         ?>                
           <div class="form-group">

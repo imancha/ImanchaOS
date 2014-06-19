@@ -3,19 +3,25 @@
     header('Location: index.php');
     exit();
   }
+
+  $title = "Registration";
+  $description = "";
 ?>
 <!DOCTYPE html>
 <html class="bg-black">
   <head>
     <meta charset="UTF-8">
-      <title>Registration | Imancha-OS</title>
+      <title>Registration | ImanchaOS</title>
       <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+      <meta content='<?php echo $title; ?> | ImanchaOS' name='keywords'/>
+			<meta content='<?php echo $description; ?> | ImanchaOS' name='description'/>
       <!-- bootstrap 3.0.2 -->
       <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
       <!-- font Awesome -->
       <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
       <!-- Theme style -->
       <link href="css/imancha.css" rel="stylesheet" type="text/css" />
+      <link href="img/imanchaos.png" rel="shortcut icon" />
 
       <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
       <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -114,11 +120,9 @@
                 $res = mysql_query($sql) or die(mysql_error());
 
                 if(mysql_affected_rows() == 1){
-                  $body = "Thank you for registering at 'imancha.com'. To activate your account, please click on this link:\n\n";
-                  $body .= BASE_URL .'activate.php?x='. urlencode($email) . "&y=$activate";
-                  mail($email, 'Registration Confirmation', $body, 'From: admin@imancha.com');
-                  
-                  sleep(2);
+                  $body = "Thank you for registering at ImanchaOS. \nTo activate your account, please click on this link:\n\n";
+                  $body .= 'http://imanchaos.com/activate.php?x='. urlencode($email) . "&y=$activate";
+                  mail($email, 'Registration Confirmation', $body, 'From: ImanchaOS');
                   
                   echo '<div class="alert alert-info alert-dismissable margin text-center">
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times</button>

@@ -25,6 +25,18 @@
 					
 					if(mysql_num_rows($res2) > 0){
 						$row2 = mysql_fetch_array($res2);
+
+						$sql3 = "SELECT id_topic FROM topic WHERE creator_topic='".$row0['username']."'";
+						$res3 = mysql_query($sql3) or die(mysql_error());
+						$row3 = mysql_num_rows($res3);
+
+						$sql4 = "SELECT id FROM follow WHERE follower='".$row0['id']."'";
+						$res4 = mysql_query($sql4) or die(mysql_error());
+						$row4 = mysql_num_rows($res4);
+
+						$sql5 = "SELECT id FROM follow WHERE user='".$row0['id']."'";
+						$res5 = mysql_query($sql5) or die(mysql_error());
+						$row5 = mysql_num_rows($res5);
 						
 						$content .= '<div class="box box-solid">											
 													<div class="box-body" style="word-wrap:break-word;">
@@ -44,11 +56,11 @@
 																		<button class="btn btn-block btn-flat btn-sm" data-toggle="collapse" data-target="#info'.++$i.'" title="Click Me">'.$row['creator_topic'].'</button>
 																		<div id="info'.$i.'" class="collapse" style="margin: 0 5px">
 																			<table>
-																				<tr><td>Join Date</td><td>:</td><td>'.$row0['date'].'</td></tr>
-																				<tr><td>City</td><td>:</td><td>'.$row0['city'].'</td></tr>
-																				<tr><td>Posts</td><td>:</td><td></td></tr>
-																				<tr><td>Following</td><td>:</td><td>'.$following.'</td></tr>
-																				<tr><td>Followers</td><td>:</td><td>'.$follower.'</td></tr>
+																				<tr><td>Join Date</td><td> : </td><td>'.$row0['date'].'</td></tr>
+																				<tr><td>City</td><td> : </td><td>'.$row0['city'].'</td></tr>
+																				<tr><td>Posts</td><td> : </td><td>'.$row3.'</td></tr>
+																				<tr><td>Following</td><td> : </td><td>'.$row4.'</td></tr>
+																				<tr><td>Followers</td><td> : </td><td>'.$row5.'</td></tr>
 																			</table>
 																		</div>
 																	</div>
@@ -81,8 +93,10 @@
 <html>
   <head>
 	<meta charset="UTF-8">
-	<title><?php echo $title ?> | Imancha-OS</title>
+	<title><?php echo $title ?> | ImanchaOS</title>
 	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+	<meta content='<?php echo $title; ?> | ImanchaOS' name='keywords'/>
+	<meta content='<?php echo $description; ?> | ImanchaOS' name='description'/>
 	<!-- bootstrap 3.0.2 -->
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<!-- font Awesome -->
@@ -91,6 +105,7 @@
 	<link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />	
 	<!-- Theme style -->
 	<link href="css/imancha.css" rel="stylesheet" type="text/css" />
+	<link href="img/imanchaos.png" rel="shortcut icon" />
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

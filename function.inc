@@ -1,8 +1,8 @@
 <?php session_start();
 	function mysql_open(){
 		$host = "localhost";
-		$username = "imancha";
-		$password = "imancha";
+		$username = "root";
+		$password = "root";
 		$database = "ImanchaOS";
 	
 		mysql_connect($host, $username, $password) or die(mysql_error());
@@ -86,32 +86,7 @@
               '.$notification.'
               <li class="footer"><a href="notification.php">View all</a></li>
             </ul>
-          </li>
-
-          <li class="dropdown tasks-menu">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <i class="fa fa-tasks"></i>
-              <span class="label label-danger">1</span>
-            </a>
-            <ul class="dropdown-menu">
-              <li class="header">You have 1 tasks</li>
-              <li>
-                <ul class="menu">
-                  <li>
-                    <a href="#">
-                      <h3>Design some buttons<small class="pull-right">20%</small></h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>                         
-                </ul>
-              </li>
-              <li class="footer"><a href="#">View all tasks</a></li>
-            </ul>
-          </li>
+          </li>        
 
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -151,16 +126,9 @@
               </li>
             </ul>
           </li>';
-	}	
+	}
 	
-	function topmenu(){
-		mysql_open();
-		
-		$sql = "INSERT INTO site VALUES ('".$_SERVER['PHP_SELF']."','".$_SERVER['REMOTE_ADDR']."','Mozilla Firefox','Linux Ubuntu','Indonesia',now())";
-		$res = mysql_query($sql) or die(mysql_error());
-		
-		mysql_close();
-		
+	function topmenu(){						
 		if(isset($_SESSION['id'])){
 			usermenu();
 		}else{
@@ -169,7 +137,7 @@
 	}
 
 	function navigation(){
-		echo '<a href="index.php" class="logo">Imancha-OS</a>
+		echo '<a href="index.php" class="logo">ImanchaOS</a>
           <nav class="navbar navbar-static-top" role="navigation">
             <a href="#" class="navbar-btn sidebar-toggle" data-toggle="offcanvas" role="button" title="Toggle Navigation">
               <span class="sr-only">Toggle navigation</span>
@@ -185,14 +153,14 @@
           </nav>';
 	}
 
-	function sidebar(){
+	function sidebar(){			
 		if(isset($_SESSION['id'])){
 			$message = "<p>Hello, ".$_SESSION['username']."</p>";
 			$dashboard = "<li><a href='dashboard.php'><i class='fa fa-dashboard'></i><span>Dashboard</span></a></li>";
 		}else{
 			$message = "<p>Hello, Guest</p>";
 			$dashboard = "";
-		}
+		}	
 		
 		echo '<section class="sidebar">
             <div class="user-panel">
@@ -226,7 +194,7 @@
 									}
 									
 									echo '<li class='.$active.'>
-													<a href="category.php?cid='.$id.'&title'.$name.'">
+													<a href="category.php?cid='.$id.'&title='.$name.'">
 														<i class="glyphicon '.$icon.'"></i>
 														<span>'.$name.'</span>
 													</a>

@@ -66,8 +66,10 @@
 <html>
   <head>
 	<meta charset="UTF-8">
-	<title><?php echo $title ?> | Imancha-OS</title>
+	<title><?php echo $title ?> | ImanchaOS</title>
 	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+	<meta content='<?php echo $title; ?> | ImanchaOS' name='keywords'/>
+	<meta content='<?php echo $description; ?> | ImanchaOS' name='description'/>	
 	<!-- bootstrap 3.0.2 -->
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<!-- font Awesome -->
@@ -76,6 +78,7 @@
 	<link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />	
 	<!-- Theme style -->
 	<link href="css/imancha.css" rel="stylesheet" type="text/css" />
+	<link href="img/imanchaos.png" rel="shortcut icon" />
 
 	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
