@@ -1,6 +1,4 @@
-<?php include_once('function.inc');
-	ob_start();
-	
+<?php include_once('function.inc');		
   if(isset($_SESSION['id'])){
     header('Location: dashboard.php');
     exit();
@@ -34,6 +32,7 @@
       <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <div class="body bg-gray"><br>                
         <?php
+					ob_start();
           if(isset($_POST['submit'])){                            
             mysql_open();
             //	Validate username

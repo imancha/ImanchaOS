@@ -3,12 +3,14 @@
     header('Location: index.php');
     exit();
   }
+  
+  $title = "Reset Password";
 ?>
 <!DOCTYPE html>
 <html class="bg-black">
   <head>
       <meta charset="UTF-8">
-      <title>Reset Password | ImanchaOS</title>
+      <title><?php echo $title; ?> | ImanchaOS</title>
       <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 			<meta content='<?php echo $title; ?> | ImanchaOS' name='keywords'/>
 			<meta content='<?php echo $description; ?> | ImanchaOS' name='description'/>      
@@ -32,6 +34,7 @@
       <div class="header">Reset Your Password</div>            
       <div class="body bg-gray"><br>
         <?php
+					ob_start();
           if(isset($_POST['submit'])){
             mysql_open();
 
@@ -51,8 +54,8 @@
               $res = mysql_query($sql) or die(mysql_error());
 
               if(mysql_affected_rows() == 1){
-                $body = "Your password to log into 'imancha.com' has been temporarily changed to '$password'. Please log in using this password and this email address. Then you may change your password to something more familiar.";
-                mail($email, 'Your temporary password.', $body, 'From: admin@imancha.com');
+                $body = "Your account password to login into ImanchaOS has been temporarily changed to '$password'. \nPlease log in using this password and this email address. Then you may change your password to something more familiar.";
+                mail($email, 'Your Temporary Password.', $body, 'From: me@imanchaos.com');
 
                 echo '<div class="alert alert-success margin text-center">
                         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times</button>
@@ -74,6 +77,7 @@
             }
             mysql_close();
           }
+          ob_flush();
         ?>
         <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">                    
           <div class="form-group">

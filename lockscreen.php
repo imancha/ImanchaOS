@@ -3,12 +3,13 @@
 		header('Location: error.php');
 		exit();
 	}
+	$title = "Lockscreen";
 ?>
 <!DOCTYPE html>
 <html class="lockscreen">
 	<head>
 		<meta charset="UTF-8">
-		<title>Lockscreen | ImanchaOS</title>
+		<title><?php echo $title; ?> | ImanchaOS</title>
 		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 		<meta content='<?php echo $title; ?> | ImanchaOS' name='keywords'/>
 		<meta content='<?php echo $description; ?> | ImanchaOS' name='description'/>		
@@ -35,6 +36,7 @@
 			</div><!-- /.headline -->
 
 					<?php
+						ob_start();
 						if(isset($_POST['submit'])){
 							mysql_open();
 							
@@ -43,8 +45,7 @@
 							$sql = "SELECT * FROM user WHERE ((username='".$_SESSION['username']."' || email='".$_SESSION['username']."') AND password=SHA1('$password')) AND active is NULL LIMIT 1";
               $res = mysql_query($sql) or die(mysql_error());
               
-              if(mysql_num_rows($res) == 1){
-								sleep(2);
+              if(mysql_num_rows($res) == 1){								
 								header("Location: dashboard.php");
 								exit();
 							}else{
@@ -56,6 +57,7 @@
 							}							
 							mysql_close();
 						}
+						ob_flush();
 					?>
 				
 			<!-- User name -->

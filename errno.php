@@ -1,31 +1,31 @@
-<?php include_once('function.inc');
+<?php include_once('function.inc');	
   $title       = "505 Error Page";
-  $description = "";    
+  $description = "";
 ?>
 <!DOCTYPE html>
 <html>
-  <head>
-      <meta charset="UTF-8">
-      <title><?php echo $title ?> | ImanchaOS</title>
-      <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-			<meta content='<?php echo $title; ?> | ImanchaOS' name='keywords'/>
-			<meta content='<?php echo $description; ?> | ImanchaOS' name='description'/>      
-      <!-- bootstrap 3.0.2 -->
-      <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-      <!-- font Awesome -->
-      <link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-      <!-- Ionicons -->
-      <link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
-      <!-- Theme style -->
-      <link href="css/imancha.css" rel="stylesheet" type="text/css" />
-      <link href="img/imanchaos.png" rel="shortcut icon" />
+	<head>
+		<meta charset="UTF-8">
+		<title><?php echo $title ?> | ImanchaOS</title>
+		<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+		<meta content='<?php echo $title; ?> | ImanchaOS' name='keywords'/>
+		<meta content='<?php echo $description; ?> | ImanchaOS' name='description'/>      
+		<!-- bootstrap 3.0.2 -->
+		<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<!-- font Awesome -->
+		<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		<!-- Ionicons -->
+		<link href="css/ionicons.min.css" rel="stylesheet" type="text/css" />
+		<!-- Theme style -->
+		<link href="css/imancha.css" rel="stylesheet" type="text/css" />
+		<link href="img/imanchaos.png" rel="shortcut icon" />
 
-      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-      <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-      <![endif]-->
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
   </head>
   <body class="skin-blue">
     <header class="header"><?php navigation(); ?></header>    
@@ -46,19 +46,19 @@
 					<div class="error-page">
             <h2 class="headline">500</h2>
 							<div class="error-content">
-									<h3><i class="fa fa-warning text-yellow"></i> Oops! Something went wrong.</h3>
-									<p>
-											We will work on fixing that right away. 
-											Meanwhile, you may <a href='dashboard.php'>return to dashboard</a> or try using the search form.
-									</p>
-									<form class='search-form'>
-											<div class='input-group'>
-													<input type="text" name="search" class='form-control' placeholder="Search"/>
-													<div class="input-group-btn">
-															<button type="submit" name="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
-													</div>
-											</div><!-- /.input-group -->
-									</form>
+								<h3><i class="fa fa-warning text-yellow"></i> Oops! Something went wrong.</h3>
+								<p>
+									We will work on fixing that right away. 
+									Meanwhile, you may <a href='dashboard.php'>return to dashboard</a> or try using the search form.
+								</p>
+								<form class='search-form' method="POST" action="">
+									<div class='input-group'>
+										<input type="text" name="search" class='form-control' placeholder="Search"/>
+										<div class="input-group-btn">
+											<button type="submit" name="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+										</div>
+									</div><!-- /.input-group -->
+								</form>
 							</div>
 					</div><!-- /.error-page -->
         </section><!-- /.content -->

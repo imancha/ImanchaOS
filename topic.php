@@ -49,9 +49,9 @@
 <html>
   <head>
 	<meta charset="UTF-8">
-	<title><?php echo $title ?> | ImanchaOS</title>
+	<title><?php echo $title0; ?> | ImanchaOS</title>
 	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-	<meta content='<?php echo $title; ?> | ImanchaOS' name='keywords'/>
+	<meta content='<?php echo $title0; ?> | ImanchaOS' name='keywords'/>
 	<meta content='<?php echo $description; ?> | ImanchaOS' name='description'/>
 	<!-- bootstrap 3.0.2 -->
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -95,7 +95,8 @@
 					</div>
 					<div class="row">
 						<div class="col-md-12">							
-								<?php						
+								<?php
+									ob_start();
 									mysql_open();
 									
 									$sql = "SELECT * FROM post WHERE id_topic='$tid' && id_category='$cid' ORDER BY date_post ASC";
@@ -220,6 +221,7 @@
 										exit();
 									}
 									mysql_close();
+									ob_flush();
 								?>						
 								<button class='btn bg-yellow btn-social' <?php if(isset($_SESSION['id'])) echo "onClick=\"window.location='reply.php?cid=".$cid."&tid=".$tid."'\""; else echo 'data-toggle="modal" data-target="#login-modal"'; ?>><i class='fa fa-reply'></i><span> Add Reply</span></button>
 						</div>

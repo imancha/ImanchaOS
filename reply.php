@@ -112,6 +112,8 @@
 					<div class="row">
 						<div class="col-md-12">							
 							<?php
+								ob_start();
+								
 								if(isset($_POST['submit'])){
 									// Validate Content Topic
 									if(!empty($_POST['editor1'])){
@@ -160,14 +162,15 @@
 
 										mysql_close();
 									}
-								}									
+								}
+								ob_flush();
 							?>
-							<form action="<?php echo $_SERVER['PHP_SELF'].'?cid='.$cid.'&tid='.$tid;?>" method="post">						
+							<form action="<?php echo $_SERVER['PHP_SELF'].'?cid='.$cid.'&tid='.$tid;?>" method="post">																															
 								<div class="form-group">
-									<p><button type="submit" name="submit" class='btn bg-yellow btn-social'><i class='fa fa-check-square-o'></i><span> Submit Reply</span></button></p>
-								</div>																		
+									<textarea id="editor1" name="editor1" rows="10" cols="80"><?php if(isset($_POST['editor1']) AND (!empty($_POST['editor1']))) echo $_POST['editor1']; ?></textarea>
+								</div>
 								<div class="form-group">
-									<textarea id="editor1" name="editor1" rows="10" cols="80"><?php if(isset($_POST['editor1']) AND (!empty($_POST['editor1']))) echo $_POST['editor1']; else echo "Reply Content"; ?></textarea>
+									<p class="pull-right"><button type="submit" name="submit" class='btn bg-yellow btn-social'><i class='fa fa-check-square-o'></i><span> Submit Reply</span></button></p>
 								</div>
 							</form>								
 						</div>

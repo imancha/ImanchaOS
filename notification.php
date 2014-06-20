@@ -1,4 +1,6 @@
-<?php include_once('function.inc');	
+<?php include_once('function.inc');
+	ob_start();
+	
 	$error = FALSE;
 	if(isset($_SESSION['id'])){		
 		$nid = $_GET['nid'];
@@ -54,6 +56,8 @@
 		header("Location: error.php");
 		exit();
 	}
+
+	ob_flush();
 
   $title        = "Notification";
   $description  = "";  

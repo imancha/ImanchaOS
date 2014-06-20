@@ -27,10 +27,10 @@
 												if(mysql_num_rows($res0) == 1)
 													$row0 = mysql_fetch_array($res0);
 
-												$sql1 = "SELECT id FROM user WHERE username='".$row['topic_creator']."' LIMIT 1";
+												$sql1 = "SELECT id FROM user WHERE username='".$row['creator_topic']."' LIMIT 1";
 												$res1 = mysql_query($sql1) or die(mysql_error());
 
-												if(mysql_num_rows($res) == 1){
+												if(mysql_num_rows($res1) == 1){
 													$row1 = mysql_fetch_array($res1);
 													
 													if(isset($_SESSION['id']))
@@ -178,8 +178,7 @@
     <!-- Bootstrap -->
     <script src="js/bootstrap.min.js" type="text/javascript"></script>    
     <!-- Imancha-OS App -->
-    <script src="js/imancha/app.js" type="text/javascript"></script>
-		<script src="js/imancha/dashboard.js" type="text/javascript"></script>    
+    <script src="js/imancha/app.js" type="text/javascript"></script>		
    <!-- page script -->
     <script type="text/javascript">
       $(function() {

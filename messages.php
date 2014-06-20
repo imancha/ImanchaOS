@@ -1,4 +1,6 @@
-<?php include_once('function.inc');			
+<?php include_once('function.inc');
+	ob_start();
+	
 	$error = FALSE;
 	$errno = FALSE;
 	
@@ -301,6 +303,8 @@
 		header('Location: errno.php');
 		exit();
 	}
+
+	ob_flush();
 	
   $title        = "Mailbox";
   $description  = "";  

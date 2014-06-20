@@ -37,6 +37,11 @@
 						$sql5 = "SELECT id FROM follow WHERE user='".$row0['id']."'";
 						$res5 = mysql_query($sql5) or die(mysql_error());
 						$row5 = mysql_num_rows($res5);
+
+						if(strlen($row2['content_post']) > 600){							
+							$row2['content_post'] = substr($row2['content_post'],0,600).
+																			' . . . <br><p><button class="btn btn-primary btn-xs" onclick="window.location=\'topic.php?cid='.$row['id_category'].'&tid='.$row['id_topic'].'&title='.$row['title_topic'].'\'">readmore</button></p>';
+						}
 						
 						$content .= '<div class="box box-solid">											
 													<div class="box-body" style="word-wrap:break-word;">
@@ -66,7 +71,7 @@
 																	</div>
 																</div>
 															</div>
-															<div class="col-md-10">
+															<div class="col-md-10">																
 																'.$row2['content_post'].'
 															</div>															
 														</div>	
@@ -84,7 +89,6 @@
 	}	
 	
 	mysql_close();
-		
 	
   $title        = "Dashboard";
   $description  = "Control Panel";  

@@ -35,6 +35,8 @@
       <div class="header">Register New Membership</div>
       <div class="body bg-gray">
         <?php
+					ob_start();
+					
           if(isset($_POST['submit'])){
 						mysql_open();
 						
@@ -122,7 +124,7 @@
                 if(mysql_affected_rows() == 1){
                   $body = "Thank you for registering at ImanchaOS. \nTo activate your account, please click on this link:\n\n";
                   $body .= 'http://imanchaos.com/activate.php?x='. urlencode($email) . "&y=$activate";
-                  mail($email, 'Registration Confirmation', $body, 'From: ImanchaOS');
+                  mail($email, 'Registration Confirmation', $body, 'From: me@imanchaos.com');
                   
                   echo '<div class="alert alert-info alert-dismissable margin text-center">
                           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times</button>
@@ -156,7 +158,8 @@
               }
             }                            
             mysql_close();
-          }            
+          }
+          ob_flush();
         ?>
         <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">                
           <div class="form-group">

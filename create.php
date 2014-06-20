@@ -113,6 +113,7 @@
 				<!-- Main content -->
 				<section class="content">					
 					<?php
+						ob_start();
 						if(isset($_POST['submit'])){
 							// Validate Title Topic
 							if(!empty($_POST['title'])){
@@ -150,7 +151,7 @@
 									echo '<div class="alert alert-success alert-dismissable">
 													<i class="fa fa-check"></i>
 													<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times</button>
-													Your Topic have been posted succesfully.<br>You may <a href="topic.php?cid='.$cid.'&tid='.$tid0.'">View Your Topic</a> or Create New Topic.
+													Your Topic have been posted succesfully.<br>You may <a href="topic.php?cid='.$cid.'&tid='.$tid0.'&title='.$title.'">View Your Topic</a> or Create New Topic.
 												</div>';
 									$_POST['title'] = null;
 									$_POST['editor1'] = null;
@@ -176,16 +177,14 @@
 							echo '<div class="alert alert-success alert-dismissable">
 											<i class="fa fa-check"></i>
 											<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times</button>
-											Your post have been posted succesfully.<br>You may <a href="topic.php?cid='.$cid.'&tid='.$tid.'#pid='.$id.'">View Your Post</a> or Edit Your Post again.
+											Your post have been posted succesfully.<br>You may <a href="topic.php?cid='.$cid.'&tid='.$tid.'&title='.$_POST['title'].'#pid='.$id.'">View Your Post</a> or Edit Your Post again.
 										</div>';
 											
 							mysql_close();
-						}						
+						}
+						ob_flush();
 					?>
-					<form action="" method="post">						
-						<div class="form-group">
-							<p><button type="submit" name="<?php if($edit) echo 'edit'; else echo 'submit'; ?>" class='btn bg-yellow btn-social'><i class='fa fa-check-square-o'></i><span> Submit Topic</span></button></p>
-						</div>
+					<form action="" method="post">												
 							<div class="form-group has-success">
 								<?php 
 									if((!$edit) || ($edit && $id == 1)){
@@ -200,12 +199,13 @@
 											echo $_POST['editor1']; 
 										}else if($edit){
 											echo $content;
-										}else{
-											echo "Topic Content"; 
 										}
 									?>
 								</textarea>
 							</div>
+							<div class="form-group">
+								<p class="pull-right"><button type="submit" name="<?php if($edit) echo 'edit'; else echo 'submit'; ?>" class='btn bg-yellow btn-social'><i class='fa fa-check-square-o'></i><span> Submit Topic</span></button></p>
+						</div>
 					</form>
         </section><!-- /.content -->
       </aside><!-- /.right-side -->
