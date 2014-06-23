@@ -73,8 +73,18 @@
         <!-- Main content -->
         <section class="content">
           <div class="row">
-						<div class="col-md-12">
+						<div class="col-md-6">
 							<p><button class='btn bg-blue btn-social' <?php if(isset($_SESSION['id'])) echo "onClick=\"window.location='create.php?cid=".$cid."'\""; else echo 'data-toggle="modal" data-target="#login-modal"'; ?>><i class='fa fa-pencil'></i><span> Create Topic</span></button></p>
+						</div>
+						<div class="col-md-6">
+							<form class="search-form" method="GET" action="search.php">
+                <div class="input-group">
+                  <input type="text" name="keyword" class="form-control" placeholder="Search" required />
+                  <div class="input-group-btn">
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                  </div>
+                </div>
+              </form>
 						</div>
 					</div>
 					<div class="row">

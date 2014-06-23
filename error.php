@@ -51,11 +51,11 @@
                   We could not find the page you were looking for. 
                   Meanwhile, you may <a href="index.php">return to forum index</a> or try using the search form.
               </p>
-              <form class="search-form">
+              <form class="search-form" method="GET" action="search.php">
                 <div class="input-group">
-                  <input type="text" name="search" class="form-control" placeholder="Search"/>
+                  <input type="text" name="keyword" class="form-control" placeholder="Search" required autofocus />
                   <div class="input-group-btn">
-                    <button type="submit" name="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
                   </div>
                 </div>
               </form>

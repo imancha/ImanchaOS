@@ -51,11 +51,11 @@
 									We will work on fixing that right away. 
 									Meanwhile, you may <a href='dashboard.php'>return to dashboard</a> or try using the search form.
 								</p>
-								<form class='search-form' method="POST" action="">
+								<form class='search-form' method="GET" action="search.php">
 									<div class='input-group'>
-										<input type="text" name="search" class='form-control' placeholder="Search"/>
+										<input type="text" name="keyword" class='form-control' placeholder="Search" required autofocus />
 										<div class="input-group-btn">
-											<button type="submit" name="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
+											<button type="submit" class="btn btn-info"><i class="fa fa-search"></i></button>
 										</div>
 									</div><!-- /.input-group -->
 								</form>
