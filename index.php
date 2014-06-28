@@ -96,8 +96,8 @@
 	<meta charset="UTF-8">
 	<title><?php echo $title ?> | ImanchaOS</title>
 	<meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-	<meta content='<?php echo $title; ?> | ImanchaOS' name='keywords'/>
-	<meta content='<?php echo $description; ?> | ImanchaOS' name='description'/>	
+	<meta content='ImanchaOS' name='keywords'/>
+	<meta content='Forum for Programmer \n ImanchaOS' name='description'/>	
 	<!-- bootstrap 3.0.2 -->
 	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<!-- font Awesome -->
@@ -141,9 +141,6 @@
 								<div class="icon">
 									<i class="ion ion-stats-bars"></i>
 								</div>
-								<a href="#" class="small-box-footer">
-									More info <i class="fa fa-arrow-circle-right"></i>
-								</a>
 							</div>
 						</div><!-- ./col -->
 						<div class="col-lg-6 col-xs-6">
@@ -156,9 +153,6 @@
 								<div class="icon">
 									<i class="ion ion-person-add"></i>
 								</div>
-								<a href="#" class="small-box-footer">
-									More info <i class="fa fa-arrow-circle-right"></i>
-								</a>
 							</div>
 						</div><!-- ./col -->						
 					</div>					
@@ -193,3 +187,4 @@
     </script>    
   </body>
 </html>
+<?php ob_flush(); ?>

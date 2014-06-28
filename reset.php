@@ -33,8 +33,7 @@
     <div class="form-box" id="login-box">
       <div class="header">Reset Your Password</div>            
       <div class="body bg-gray"><br>
-        <?php
-					ob_start();
+        <?php					
           if(isset($_POST['submit'])){
             mysql_open();
 
@@ -77,7 +76,6 @@
             }
             mysql_close();
           }
-          ob_flush();
         ?>
         <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">                    
           <div class="form-group">
@@ -100,3 +98,4 @@
     <script src="js/bootstrap.min.js" type="text/javascript"></script>        
   </body>
 </html>
+<?php ob_flush(); ?>

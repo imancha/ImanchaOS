@@ -1,6 +1,4 @@
-<?php include_once('function.inc');
-	ob_start();
-	
+<?php include_once('function.inc');		
 	$error = FALSE;
 	$errno = FALSE;
 	
@@ -303,8 +301,6 @@
 		header('Location: errno.php');
 		exit();
 	}
-
-	ob_flush();
 	
   $title        = "Mailbox";
   $description  = "";  
@@ -419,3 +415,4 @@
     </script>    
   </body>
 </html>
+<?php ob_flush(); ?>

@@ -96,7 +96,6 @@
 					<div class="row">
 						<div class="col-md-12">							
 								<?php
-									ob_start();
 									mysql_open();
 									
 									$sql = "SELECT * FROM post WHERE id_topic='$tid' && id_category='$cid' ORDER BY date_post ASC";
@@ -221,7 +220,6 @@
 										exit();
 									}
 									mysql_close();
-									ob_flush();
 								?>						
 								<button class='btn bg-yellow btn-social' <?php if(isset($_SESSION['id'])) echo "onClick=\"window.location='reply.php?cid=".$cid."&tid=".$tid."'\""; else echo 'data-toggle="modal" data-target="#login-modal"'; ?>><i class='fa fa-reply'></i><span> Add Reply</span></button>
 						</div>
@@ -240,3 +238,4 @@
     <script src="js/imancha/app.js" type="text/javascript"></script>    
   </body>
 </html>
+<?php ob_flush(); ?>

@@ -1,4 +1,6 @@
 <?php session_start();
+	ob_start();
+	
 	function mysql_open(){
 		$host = "localhost";
 		$username = "root";
@@ -155,8 +157,10 @@
 
 	function sidebar(){			
 		if(isset($_SESSION['id'])){
+			if($_SESSION['level'] == "admin")
+				$dashboard = "<li><a href='admin.php'><i class='glyphicon glyphicon-eye-open'></i><span>Administrator</span></a></li>";
 			$message = "<p>Hello, ".$_SESSION['username']."</p>";
-			$dashboard = "<li><a href='dashboard.php'><i class='fa fa-dashboard'></i><span>Dashboard</span></a></li>";
+			$dashboard .= "<li><a href='dashboard.php'><i class='fa fa-dashboard'></i><span>Dashboard</span></a></li>";
 		}else{
 			$message = "<p>Hello, Guest</p>";
 			$dashboard = "";

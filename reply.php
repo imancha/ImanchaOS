@@ -112,8 +112,6 @@
 					<div class="row">
 						<div class="col-md-12">							
 							<?php
-								ob_start();
-								
 								if(isset($_POST['submit'])){
 									// Validate Content Topic
 									if(!empty($_POST['editor1'])){
@@ -163,7 +161,6 @@
 										mysql_close();
 									}
 								}
-								ob_flush();
 							?>
 							<form action="<?php echo $_SERVER['PHP_SELF'].'?cid='.$cid.'&tid='.$tid;?>" method="post">																															
 								<div class="form-group">
@@ -198,3 +195,4 @@
     </script>
   </body>
 </html>
+<?php ob_flush(); ?>

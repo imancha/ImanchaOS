@@ -90,3 +90,4 @@
     <script src="js/imancha/app.js" type="text/javascript"></script>    
   </body>
 </html>
+<?php ob_flush(); ?>

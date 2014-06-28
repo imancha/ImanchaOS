@@ -1,6 +1,4 @@
-<?php include_once('function.inc');
-	ob_start();
-	
+<?php include_once('function.inc');	
 	$error = FALSE;
 	if(isset($_SESSION['id'])){		
 		$nid = $_GET['nid'];
@@ -56,8 +54,6 @@
 		header("Location: error.php");
 		exit();
 	}
-
-	ob_flush();
 
   $title        = "Notification";
   $description  = "";  
@@ -120,3 +116,4 @@
     <script src="js/imancha/app.js" type="text/javascript"></script>    
   </body>
 </html>
+<?php ob_flush(); ?>

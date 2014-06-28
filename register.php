@@ -35,8 +35,6 @@
       <div class="header">Register New Membership</div>
       <div class="body bg-gray">
         <?php
-					ob_start();
-					
           if(isset($_POST['submit'])){
 						mysql_open();
 						
@@ -118,7 +116,7 @@
               if((mysql_num_rows($res) == 0) && (mysql_num_rows($res1) == 0)){
                 $activate = md5(uniqid(rand(), true));
 
-                $sql = "INSERT INTO user VALUES (NULL,'$username',SHA1('$password'),'$name','$city','$email',NOW(),'$activate')";
+                $sql = "INSERT INTO user VALUES (NULL,'$username',SHA1('$password'),'$name','$city','$email',NOW(),'member','$activate')";
                 $res = mysql_query($sql) or die(mysql_error());
 
                 if(mysql_affected_rows() == 1){
@@ -159,7 +157,6 @@
             }                            
             mysql_close();
           }
-          ob_flush();
         ?>
         <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">                
           <div class="form-group">
@@ -205,3 +202,4 @@
     <script src="js/bootstrap.min.js" type="text/javascript"></script>    
   </body>
 </html>
+<?php ob_flush(); ?>

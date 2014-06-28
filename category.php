@@ -1,4 +1,4 @@
-<?php include_once('function.inc');
+<?php include_once('function.inc');		
 	$error = FALSE;
   if(isset($_GET['cid']) && is_numeric($_GET['cid'])){
 		$cid = (int) $_GET['cid'];
@@ -74,7 +74,7 @@
         <section class="content">
           <div class="row">
 						<div class="col-md-6">
-							<p><button class='btn bg-blue btn-social' <?php if(isset($_SESSION['id'])) echo "onClick=\"window.location='create.php?cid=".$cid."'\""; else echo 'data-toggle="modal" data-target="#login-modal"'; ?>><i class='fa fa-pencil'></i><span> Create Topic</span></button></p>
+							<p><button class='btn bg-blue btn-social' <?php if(isset($_SESSION['id'])) echo "onClick=\"window.location='create.php?cid=".$cid."&title=".$title."'\""; else echo 'data-toggle="modal" data-target="#login-modal"'; ?>><i class='fa fa-pencil'></i><span> Create Topic</span></button></p>
 						</div>
 						<div class="col-md-6">
 							<form class="search-form" method="GET" action="search.php">
@@ -184,3 +184,4 @@
     </script>
   </body>
 </html>
+<?php ob_flush(); ?>

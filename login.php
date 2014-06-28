@@ -31,8 +31,7 @@
       <div class="header">Sign In</div>            
       <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <div class="body bg-gray"><br>                
-        <?php
-					ob_start();
+        <?php					
           if(isset($_POST['submit'])){                            
             mysql_open();
             //	Validate username
@@ -70,6 +69,7 @@
                 $_SESSION['name'] = $row['name'];
                 $_SESSION['email'] = $row['email'];                            
                 $_SESSION['date'] = $row['date'];
+                $_SESSION['level'] = $row['level'];
                                 
                 header("Location: dashboard.php");
                 exit();
@@ -83,7 +83,6 @@
               }
             }
             mysql_close();
-            ob_flush();
           }
         ?>                
           <div class="form-group">
@@ -121,3 +120,4 @@
     <script src="js/bootstrap.min.js" type="text/javascript"></script>      
   </body>
 </html>
+<?php ob_flush(); ?>

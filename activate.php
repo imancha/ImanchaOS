@@ -32,8 +32,7 @@
     <div class="form-box" id="login-box">
       <div class="header">Activate Your Account</div>            
       <div class="body bg-gray">
-        <?php
-					ob_start();
+        <?php					
           $email = $_GET['x'];
           $active = $_GET['y'];
 
@@ -55,7 +54,7 @@
 												 "\n Name \t: ".$row['name'].
 												 "\n City \t: ".$row['city'].
 												 "\n Email \t: ".$row['email'];											
-								mail($email, 'Registration Success', $body, 'From: me@imanchaos.com');
+								mail($email, 'Registration Success', $body, 'From: admin@imanchaos.com');
 
 								$sql = "INSERT INTO notification VALUES (null,'".$row['id']."','".$row['username']."','joined ImanchaOS.',now(),'sent')";
 								$res = mysql_query($sql) or die(mysql_error());
@@ -78,8 +77,7 @@
           }else{
             header("Location: errno.php");
             exit();
-          }
-          ob_flush();          
+          }          
         ?>                
       </div>
       <div class="footer">
@@ -96,3 +94,4 @@
     <script src="js/bootstrap.min.js" type="text/javascript"></script>    
   </body>
 </html>
+<?php ob_flush(); ?>

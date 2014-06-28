@@ -1,6 +1,6 @@
 <?php include_once('function.inc');
 	if(!isset($_SESSION['id'])){
-		header('Location: index.php');
+		header('Location: login.php');
 		exit();
 	}
 	
@@ -39,8 +39,8 @@
 						$row5 = mysql_num_rows($res5);
 
 						if(strlen($row2['content_post']) > 600){							
-							$row2['content_post'] = substr($row2['content_post'],0,600).
-																			' . . . <br><p><button class="btn btn-primary btn-xs" onclick="window.location=\'topic.php?cid='.$row['id_category'].'&tid='.$row['id_topic'].'&title='.$row['title_topic'].'\'">readmore</button></p>';
+							$row2['content_post'] = substr($row2['content_post'],0,600).' . . .';
+							$read = '<button class="btn btn-flat bg-maroon pull-right" style="margin-right:3px" onclick="window.location=\'topic.php?cid='.$row['id_category'].'&tid='.$row['id_topic'].'&title='.$row['title_topic'].'\'">Readmore</button>';
 						}
 						
 						$content .= '<div class="box box-solid">											
@@ -76,8 +76,9 @@
 															</div>															
 														</div>	
 														<div class="row">
-															<div class="col-md-10 pull-right">
+															<div class="col-md-10 pull-right">																
 																<button class="btn btn-flat bg-olive pull-right" onClick="window.location=\'reply.php?cid='.$row['id_category'].'&tid='.$row['id_topic'].'\'">Reply</button>
+																'.$read.'
 															</div>
 														</div>
 													</div>													
@@ -148,3 +149,4 @@
     <script src="js/imancha/app.js" type="text/javascript"></script>    
   </body>
 </html>
+<?php ob_flush(); ?>

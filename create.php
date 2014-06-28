@@ -1,4 +1,9 @@
 <?php include_once('function.inc');
+	if(!isset($_SESSION['id'])){
+		header('Location: error.php');
+		exit();
+	}
+	
 	$error = FALSE;
 	$edit = FALSE;
 	if(isset($_GET['cid']) && is_numeric($_GET['cid'])){
@@ -112,8 +117,7 @@
 				</section>
 				<!-- Main content -->
 				<section class="content">					
-					<?php
-						ob_start();
+					<?php						
 						if(isset($_POST['submit'])){
 							// Validate Title Topic
 							if(!empty($_POST['title'])){
@@ -182,7 +186,6 @@
 											
 							mysql_close();
 						}
-						ob_flush();
 					?>
 					<form action="" method="post">												
 							<div class="form-group has-success">
@@ -230,3 +233,4 @@
     </script>
   </body>
 </html>
+<?php ob_flush(); ?>
