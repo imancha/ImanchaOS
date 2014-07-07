@@ -50,7 +50,7 @@
 								$row = mysql_fetch_array($res);								
 								$body = "Your account for ImanchaOS have been activated.\nHere's the detail of your account:\n";
 								$body .= "\n Username \t: ".$row['username'].
-												 "\n Password \t: ".$row['SHA1(password)'].
+												 "\n Password \t: (SHA1: ".$row['password'].")".
 												 "\n Name \t: ".$row['name'].
 												 "\n City \t: ".$row['city'].
 												 "\n Email \t: ".$row['email'];											

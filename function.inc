@@ -32,7 +32,7 @@
 				
 				$message .= '<li>
 											<a href="messages.php?mid='.$id.'#'.$id.'">
-												<div class="pull-left"><img src="img/avatar3.png" class="img-circle" alt="User Image"/></div>
+												<div class="pull-left"><img src="'.$row['avatar'].'" class="img-circle" alt="User Image"/></div>
 												<h4>'.$user.' &nbsp;<span><small><i class="fa fa-clock-o"></i> '.$date.'</small></span></h4>
 												<p>'.$content.'</p>
 											</a>
@@ -63,6 +63,12 @@
 		}else{			
 			$notification = '';
 		}
+
+		$sql = "SELECT avatar FROM user WHERE id='".$_SESSION['id']."' LIMIT 1";
+		$res = mysql_query($sql) or die(mysql_error());
+
+		if(mysql_num_rows($res) == 1)
+			$row = mysql_fetch_array($res);
 		
 		mysql_close();
 		
@@ -97,7 +103,7 @@
             </a>
             <ul class="dropdown-menu">      
               <li class="user-header bg-light-blue">
-                <img src="img/avatar3.png" class="img-circle" alt="User Image" />
+                <img src="'.$row['avatar'].'" class="img-circle" alt="User Image" />
                 <p>'.$_SESSION['name'].'<small>Member since &nbsp;'.tanggal($_SESSION['date']).'</small></p>
               </li>
               <li class="user-body">
@@ -119,8 +125,8 @@
             </a>
             <ul class="dropdown-menu">      
               <li class="user-header bg-red">
-                <img src="img/avatar3.png" class="img-circle" alt="User Image" />
-                <p>Anonymous</p>
+                <img src="img/user/a.png" class="img-circle" alt="User Image" />
+                <p>Guest</p>
               </li>
               <li class="user-footer">
                 <div class="pull-left"><a href="login.php" class="btn btn-default btn-flat">Sign In</a></div> 
@@ -157,26 +163,33 @@
 
 	function sidebar(){			
 		if(isset($_SESSION['id'])){
+			mysql_open();
+
+			$sql = "SELECT avatar FROM user WHERE id='".$_SESSION['id']."' LIMIT 1";
+			$res = mysql_query($sql) or die(mysql_error());
+
+			if(mysql_num_rows($res) == 1)
+				$row = mysql_fetch_array($res);							
+			
+			mysql_close();
+			
 			if($_SESSION['level'] == "admin")
 				$dashboard = "<li><a href='admin.php'><i class='glyphicon glyphicon-eye-open'></i><span>Administrator</span></a></li>";
-			$message = "<p>Hello, ".$_SESSION['username']."</p>";
+				
+			$panel = '<div class="user-panel">
+									<div class="pull-left image">
+                    <img src="'.$row['avatar'].'" class="img-circle" alt="User Image" />
+									</div>
+									<div class="pull-left info">
+										<p>Hello, '.$_SESSION['username'].'</p>
+										<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+									</div>
+								</div>';			
 			$dashboard .= "<li><a href='dashboard.php'><i class='fa fa-dashboard'></i><span>Dashboard</span></a></li>";
-		}else{
-			$message = "<p>Hello, Guest</p>";
-			$dashboard = "";
-		}	
+		}
 		
 		echo '<section class="sidebar">
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="img/avatar3.png" class="img-circle" alt="User Image" />
-                </div>
-                <div class="pull-left info">
-									'.$message.'
-									<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-                </div>
-            	</div>
-
+						'.$panel.'
             <ul class="sidebar-menu">'.$dashboard.'';
                 
 							mysql_open();
@@ -241,4 +254,15 @@
 		$result = $tgl . " " . $Bulan[(int)$bulan-1] . " ". $tahun;		
 		return($result);
 	}
+
+	function GetImageExtension($imagetype){
+		if(empty($imagetype)) return false;
+			switch($imagetype){
+			 case 'image/bmp': return '.bmp';
+			 case 'image/gif': return '.gif';
+			 case 'image/jpeg': return '.jpg';
+			 case 'image/png': return '.png';
+			 default: return false;
+			}
+	}	
 ?>

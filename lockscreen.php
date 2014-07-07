@@ -63,9 +63,24 @@
 			
 			<!-- START LOCK SCREEN ITEM -->
 			<div class="lockscreen-item">
+
+					<?php
+						mysql_open();
+
+						$sql = "SELECT avatar FROM user WHERE id='".$_SESSION['id']."' LIMIT 1";
+						$res = mysql_query($sql) or die(mysql_error());
+
+						if(mysql_num_rows($res) == 1){
+							$row = mysql_fetch_array($res);
+							$avatar = $row['avatar'];
+						}
+						
+						mysql_close();
+					?>
+				
 					<!-- lockscreen image -->
 					<div class="lockscreen-image">
-							<img src="img/avatar3.png" alt="user image"/>
+							<img src="<?php echo $avatar; ?>" alt="user image"/>
 					</div>
 					<!-- /.lockscreen-image -->
 

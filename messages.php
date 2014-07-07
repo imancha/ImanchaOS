@@ -43,12 +43,12 @@
 													<div class="box-body chat" id="chat-box">';
 														
 						while($row = mysql_fetch_assoc($res)){
-							$sql0 = "SELECT id FROM user WHERE username='".$row['user_message']."' LIMIT 1";
+							$sql0 = "SELECT * FROM user WHERE username='".$row['user_message']."' LIMIT 1";
 							$res0 = mysql_query($sql0) or die(mysql_error());
 							$row0 = mysql_fetch_array($res0);
 							
 							$message .= '<div class="item" id='.$row['id_message'].'>
-														<img src="img/avatar3.png" alt="user image" class="offline"/>
+														<img src="'.$row0['avatar'].'" alt="user image" class="offline"/>
 														<p class="message">
 															<a href="profile.php?user='.$row0['0'].'" class="name">
 																<small class="text-muted pull-right"><i class="fa fa-clock-o"></i> '.$row['date_message'].'</small>

@@ -3,6 +3,38 @@
 	$user = (int) $_GET['user'];
 	
 	mysql_open();
+
+	if(isset($_POST['upload'])){
+		if (!empty($_FILES["uploadedimage"]["name"])) {
+			$file_name = $_FILES["uploadedimage"]["name"];
+			$temp_name = $_FILES["uploadedimage"]["tmp_name"];
+			$imgtype = $_FILES["uploadedimage"]["type"];
+			$ext = GetImageExtension($imgtype);
+			$imagename = $_SESSION['username'].$ext;
+			$target_path = "img/user/".$imagename;
+
+			if(move_uploaded_file($temp_name, $target_path)) {
+				$sql = "UPDATE user SET avatar='$target_path' WHERE id='".$_SESSION['id']."' LIMIT 1";
+				$res = mysql_query($sql) or die(mysql_error());
+
+				if($res){
+					$avatar = "<div class='alert alert-success alert-dismissable'>
+												<i class='fa fa-check'></i>
+												<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times</button>
+												Avatar have been changed.
+											</div>";
+				}else{
+					$avatar = "<div class='alert alert-warning alert-dismissable'>
+												<i class='fa fa-warning'></i>
+												<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times</button>
+												Error while uploading image on the server. Please try again.
+											</div>";
+				}					
+			}else{
+				 exit("Error While uploading image on the server");
+			}
+		}
+	}
 	
 	if(is_numeric($user) && $user > 0){
 		$sql = "SELECT * FROM user WHERE id='$user' LIMIT 1";						
@@ -14,6 +46,8 @@
 	
 	if(mysql_num_rows($res) == 1){
 		$row = mysql_fetch_array($res);
+
+		$name = $row['name'];
 		
 		$sql0 = "SELECT * FROM topic WHERE creator_topic='".$row['1']."'";
 		$res0 = mysql_query($sql0) or die(mysql_error());
@@ -24,11 +58,24 @@
 		$sql2 = "SELECT * FROM follow WHERE follower='".$row['0']."'";
 		$res2 = mysql_query($sql2) or die(mysql_error());
 		$row2 = mysql_num_rows($res2);
+
+		if($_SESSION['id'] == $row['id']){
+			$form = '<form action="" enctype="multipart/form-data" method="post">
+								<div class="col-md-9 no-padding">												
+									<input style="display:none" id="file-type" type="file" size="4" name="uploadedimage" />
+									<input id="browse-click" type="button" class="btn btn-info btn-sm btn-block btn-flat" value="Change Avatar" title="Browse" />
+								</div>
+								<div class="col-md-3 no-padding">
+									<button type="submit" name="upload" class="btn btn-info btn-sm btn-block btn-flat" title="Upload"><i class="fa fa-check"></i></button>
+								</div>
+							</form>';
+		}
 		
-		$content = '<div class="row">									
+		$content .= '<div class="row">									
 									<div class="col-md-12">
 										<div class="col-md-2">											
-											<img src="img/avatar3.png" alt="user image" width="100%"/>
+											<img src="'.$row['avatar'].'" class="thumbnail" alt="user image" width="100%" style="padding-bottom:10px" />
+											'.$form.'									
 										</div>
 										<div class="col-md-10">
 											<table cellpadding="5em">
@@ -100,10 +147,11 @@
           </ol>
         </section>
         <!-- Main content -->
-        <section class="content">        
+        <section class="content">
+					<?php echo $avatar; ?>
 					<div class="box box-solid box-danger">
 						<div class="box-header">
-							<h3 class="box-title"><i class="fa fa-globe"></i> ImanchaOS</h3>
+							<h3 class="box-title"><i class="fa fa-globe"></i> <?php echo $name; ?></h3>
 							<div class="box-tools pull-right"><span class="time"><?php echo date("D, d-M-Y h:i A"); ?></span></div>
 						</div>
 						<div class="box-body"><?php echo $content; ?></div>
@@ -118,7 +166,19 @@
     <!-- Bootstrap -->
     <script src="js/bootstrap.min.js" type="text/javascript"></script>    
     <!-- Imancha-OS App -->
-    <script src="js/imancha/app.js" type="text/javascript"></script>    
+    <script src="js/imancha/app.js" type="text/javascript"></script>
+    <script>
+    $(window).load(function () {
+			var intervalFunc = function () {
+					$('#file-name').html($('#file-type').val());
+			};
+			$('#browse-click').on('click', function () { // use .live() for older versions of jQuery
+					$('#file-type').click();
+					setInterval(intervalFunc, 1);
+					return false;
+			});
+		});
+    </script>
   </body>
 </html>
 <?php ob_flush(); ?>

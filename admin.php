@@ -1,7 +1,19 @@
 <?php include_once('function.inc');
-	if(isset($_SESSION['id'])){
+	if(isset($_SESSION['id'])){		
 		if($_SESSION['level'] == "admin"){
 			$view = $_GET['view'];
+
+			mysql_open();
+			
+			$sql = "SELECT avatar FROM user WHERE id='".$_SESSION['id']."' LIMIT 1";
+			$res = mysql_query($sql) or die(mysql_error());
+
+			if(mysql_num_rows($res) == 1){
+				$row = mysql_fetch_array($res);
+				$avatar = $row['avatar'];
+			}
+			
+			mysql_close();
 
 			if($view == "admin"){
 				mysql_open();
@@ -429,7 +441,7 @@
 				
 				$content .= '</div></div>';
 				
-				mysql_close();
+				mysql_close();			
 			}else{
 				header("Location: admin.php?view=admin");
 				exit();
@@ -475,7 +487,7 @@
 				<section class="sidebar">
 					<div class="user-panel">
 						<div class="pull-left image">
-							<img src="img/avatar3.png" class="img-circle" alt="User Image" />
+							<img src="<?php echo $avatar; ?>" class="img-circle" alt="User Image" />
 						</div>
 						<div class="pull-left info">
 							<p>Hello, <?php echo $_SESSION['username']; ?></p>

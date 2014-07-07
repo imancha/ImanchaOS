@@ -156,12 +156,12 @@
 											if(isset($_SESSION['id']) && ($_SESSION['id'] == $row0['id']))
 												$foll = '';
 											else
-												$foll = '<button class="btn btn-block btn-flat btn-sm" '.$follow.' "><b>'.$folow.'</b></button>';
+												$foll = '<button class="btn btn-info btn-block btn-sm" '.$follow.' "><b>'.$folow.'</b></button>';
 												
 											if(isset($_SESSION['id']))												
 												$profile = 'href="profile.php?user='.$row0['id'].'"';		
 											else
-												$profile = 'href="#" data-toggle="modal" data-target="#login-modal"';
+												$profile = 'href="#required" data-toggle="modal" data-target="#login-modal"';
 												
 											
 											echo '<div class="box box-solid box-success">
@@ -180,7 +180,7 @@
 																	<div class="col-md-2">																		
 																		<div class="panel panel-warning">
 																			<div class="panel-body no-padding">
-																				<a '.$profile.' class="thumbnail no-margin"><img src="img/avatar3.png" alt="user image" width="100%"/></a>
+																				<a '.$profile.' class="thumbnail no-margin"><img src="'.$row0['avatar'].'" alt="user image" width="100%"/></a>
 																				<button class="btn btn-block btn-flat btn-sm" data-toggle="collapse" data-target="#info'.++$i.'" title="Click Me">'.$creator.'</button>
 																				<div id="info'.$i.'" class="collapse" >
 																					<table style="margin: 0 5px">																				

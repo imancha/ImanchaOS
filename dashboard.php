@@ -38,8 +38,8 @@
 						$res5 = mysql_query($sql5) or die(mysql_error());
 						$row5 = mysql_num_rows($res5);
 
-						if(strlen($row2['content_post']) > 600){							
-							$row2['content_post'] = substr($row2['content_post'],0,600).' . . .';
+						if(strlen($row2['content_post']) > 555){							
+							$row2['content_post'] = substr($row2['content_post'],0,555).' . . .';
 							$read = '<button class="btn btn-flat bg-maroon pull-right" style="margin-right:3px" onclick="window.location=\'topic.php?cid='.$row['id_category'].'&tid='.$row['id_topic'].'&title='.$row['title_topic'].'\'">Readmore</button>';
 						}
 						
@@ -57,7 +57,7 @@
 															<div class="col-sm-4 col-md-2">																																
 																<div class="panel panel-warning">
 																	<div class="panel-body no-padding">
-																		<a href="profile.php?user='.$row0['id'].'" class="thumbnail no-margin"><img src="img/avatar3.png" alt="user image" width="100%"/></a>
+																		<a href="profile.php?user='.$row0['id'].'" class="thumbnail no-margin"><img src="'.$row0['avatar'].'" alt="user image" width="100%"/></a>
 																		<button class="btn btn-block btn-flat btn-sm" data-toggle="collapse" data-target="#info'.++$i.'" title="Click Me">'.$row['creator_topic'].'</button>
 																		<div id="info'.$i.'" class="collapse" style="margin: 0 5px">
 																			<table>
